@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title"
+    },
+    "Summary": {
+      "type": "text"
+    },
+    "Content_html": {
+      "type": "blocks"
+    },
+    "DateTime": {
+      "type": "datetime"
+    },
+    "Tag": {
+      "displayName": "Tag",
+      "type": "component",
+      "repeatable": true,
+      "component": "tag.tag"
+    }
+  }
+}
