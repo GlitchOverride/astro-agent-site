@@ -18,7 +18,7 @@
       "targetField": "Title"
     },
     "Summary": {
-      "type": "text"
+      "type": "string"
     },
     "Content_html": {
       "type": "blocks"
@@ -27,7 +27,6 @@
       "type": "datetime"
     },
     "Tag": {
-      "displayName": "Tag",
       "type": "component",
       "repeatable": true,
       "component": "tag.tag"
