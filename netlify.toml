@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18.17.1"
+
+# Redirect API requests to your backend server in production
+[[redirects]]
+  from = "/api/*"
+  to = "http://5.161.95.205:8000/api/:splat"
+  status = 200
+  force = true
+
+# For single page app routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 4321
+  framework = "astro"
+
+# Environment variables will be set in the Netlify UI
+# STRAPI_BLOG_API_URL
+# STRAPI_API_KEY

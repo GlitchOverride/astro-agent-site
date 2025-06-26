@@ -1,0 +1,28 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import AgentContent from "@components/AgentContent.astro";
+import { SITE } from "@config";
+
+const title = `Agent-Generated Content | ${SITE.title}`;
+const description = "Content generated and managed by the Business Assistant LLM agent";
+---
+
+<Layout title={title} description={description}>
+  <Header activeNav="agent-content" />
+  <main id="main-content">
+    <section class="mb-28">
+      <h1 class="text-2xl font-semibold sm:text-3xl">Agent-Generated Content</h1>
+      <p class="my-4">
+        This page displays content that has been automatically generated and managed by the
+        Business Assistant LLM agent. The agent can create new content, update existing content,
+        and respond to user interactions.
+      </p>
+      <div class="mt-8">
+        <AgentContent />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
