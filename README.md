@@ -1,53 +1,46 @@
-# AstroPaper 📄
+# Business Assistant Astro Site 🚀
 
-![AstroPaper](public/astropaper-og.jpg)
-[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/community/file/1356898632249991861)
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![GitHub](https://img.shields.io/github/license/satnaing/astro-paper?color=%232F3741&style=for-the-badge)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
+![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro blog theme. This theme is designed and crafted based on [my personal blog](https://satnaing.dev/blog).
+This is the frontend website for the Business Assistant project, built with Astro. It serves as the user-facing interface for the AI-powered business assistant, providing blog content, contact functionality, and agent-generated content.
 
-Read [the blog posts](https://astro-paper.pages.dev/posts/) or check [the README Documentation Section](#-documentation) for more info.
+This site is designed to work as a standalone module that communicates with the BusinessAssistant backend via API endpoints.
 
 ## 🔥 Features
 
-- [x] type-safe markdown
-- [x] super fast performance
-- [x] accessible (Keyboard/VoiceOver)
-- [x] responsive (mobile ~ desktops)
-- [x] SEO-friendly
-- [x] light & dark mode
-- [x] fuzzy search
-- [x] draft posts & pagination
-- [x] sitemap & rss feed
-- [x] followed best practices
-- [x] highly customizable
-- [x] dynamic OG image generation for blog posts [#15](https://github.com/satnaing/astro-paper/pull/15) ([Blog Post](https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/))
-
-_Note: I've tested screen-reader accessibility of AstroPaper using **VoiceOver** on Mac and **TalkBack** on Android. I couldn't test all other screen-readers out there. However, accessibility enhancements in AstroPaper should be working fine on others as well._
-
-## ✅ Lighthouse Score
-
-<p align="center">
-  <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fastro-paper.pages.dev%2F&form_factor=desktop">
-    <img width="710" alt="AstroPaper Lighthouse Score" src="AstroPaper-lighthouse-score.svg">
-  <a>
-</p>
+- [x] Blog with Strapi CMS integration
+- [x] Contact form with email functionality
+- [x] Agent-generated content display
+- [x] Content request system
+- [x] Responsive design (mobile ~ desktop)
+- [x] Light & dark mode
+- [x] SEO optimization
+- [x] Fast performance with Astro
+- [x] Netlify deployment with API proxying
 
 ## 🚀 Project Structure
 
-Inside of AstroPaper, you'll see the following folders and files:
+Inside of the Business Assistant Astro Site, you'll see the following folders and files:
 
 ```bash
 /
-├── public/
-│   ├── assets/
-|   ├── pagefind/ # auto-generated when build
-│   └── favicon.svg
-│   └── astropaper-og.jpg
-│   └── favicon.svg
+├── public/           # Static assets
+├── src/
+│   ├── components/    # Reusable UI components
+│   ├── content/       # Blog content
+│   ├── layouts/       # Page layouts
+│   ├── pages/         # Page routes
+│   │   ├── api/       # API endpoints
+│   │   └── posts/     # Blog post pages
+│   ├── styles/        # Global styles
+│   └── utils/         # Utility functions
+├── strapi-cms/       # Strapi CMS configuration
+├── .env              # Local environment variables
+├── .env.production   # Production environment variables
+├── netlify.toml      # Netlify deployment configuration
+└── astro.config.ts   # Astro configuration
 │   └── toggle-theme.js
 ├── src/
 │   ├── assets/
@@ -67,32 +60,61 @@ Inside of AstroPaper, you'll see the following folders and files:
 └── astro.config.ts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🔌 API Integration
 
-Any static assets, like images, can be placed in the `public/` directory.
+This site integrates with several API endpoints:
 
-All blog posts are stored in `src/data/blog` directory.
+### Internal Endpoints
 
-## 📖 Documentation
+- `/api/send-email` - Handles contact form submissions using nodemailer
 
-Documentation can be read in two formats\_ _markdown_ & _blog post_.
+### External Endpoints (via Netlify Redirects)
 
-- Configuration - [markdown](src/data/blog/how-to-configure-astropaper-theme.md) | [blog post](https://astro-paper.pages.dev/posts/how-to-configure-astropaper-theme/)
-- Add Posts - [markdown](src/data/blog/adding-new-post.md) | [blog post](https://astro-paper.pages.dev/posts/adding-new-posts-in-astropaper-theme/)
-- Customize Color Schemes - [markdown](src/data/blog/customizing-astropaper-theme-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/customizing-astropaper-theme-color-schemes/)
-- Predefined Color Schemes - [markdown](src/data/blog/predefined-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/predefined-color-schemes/)
+- `/api/website/agent-content` - Fetches content generated by the AI agent from the backend
+- `/api/website/request-content` - Sends requests for new content to be generated by the AI agent
+
+The API integration is configured in the `netlify.toml` file, which sets up redirects to the backend server in production:
+
+```toml
+[[redirects]]
+  from = "/api/*"
+  to = "http://5.161.95.205:8000/api/:splat"
+  status = 200
+  force = true
+```
+
+## 🚀 Deployment
+
+This site is deployed on Netlify. The deployment configuration is in the `netlify.toml` file.
+
+### Environment Variables
+
+The following environment variables need to be set in Netlify:
+
+- `GMAIL_USER` - Gmail address for the contact form
+- `GMAIL_PASS` - Gmail app password for the contact form
+- `STRAPI_BLOG_API_URL` - URL for the Strapi CMS API
+- `STRAPI_API_KEY` - API key for the Strapi CMS
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
 
 ## 💻 Tech Stack
 
 **Main Framework** - [Astro](https://astro.build/)  
 **Type Checking** - [TypeScript](https://www.typescriptlang.org/)  
 **Styling** - [TailwindCSS](https://tailwindcss.com/)  
-**UI/UX** - [Figma Design File](https://www.figma.com/community/file/1356898632249991861)  
-**Static Search** - [FuseJS](https://pagefind.app/)  
-**Icons** - [Tablers](https://tabler-icons.io/)  
-**Code Formatting** - [Prettier](https://prettier.io/)  
-**Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
-**Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
+**Email Functionality** - [Nodemailer](https://nodemailer.com/)  
+**CMS** - [Strapi](https://strapi.io/)  
+**Deployment** - [Netlify](https://www.netlify.com/)  
+**API Integration** - FastAPI backend communication  
 **Linting** - [ESLint](https://eslint.org)
 
 ## 👨🏻‍💻 Running Locally
