@@ -11,6 +11,9 @@ export default defineConfig({
   site: SITE.website,
   output: 'server',
   adapter: netlify(),
+  experimental: {
+    session: true
+  },
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
