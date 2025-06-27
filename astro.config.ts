@@ -10,7 +10,9 @@ import { SITE } from "./src/config";
 export default defineConfig({
   site: SITE.website,
   output: 'static',
-  adapter: netlify(),
+  adapter: netlify({
+    edgeMiddleware: false // Disable edge middleware which requires sessions
+  }),
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
