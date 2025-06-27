@@ -10,9 +10,8 @@ import { SITE } from "./src/config";
 export default defineConfig({
   site: SITE.website,
   output: 'static',
-  adapter: netlify({
-    edgeMiddleware: false // Disable edge middleware which requires sessions
-  }),
+  // Remove adapter completely for static site generation
+  // This will generate a purely static site without any server-side features
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
