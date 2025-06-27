@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import netlify from "@astrojs/netlify";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import { SITE } from "./src/config";
@@ -8,6 +9,8 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  output: 'server',
+  adapter: netlify(),
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),

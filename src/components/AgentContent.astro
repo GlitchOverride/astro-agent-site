@@ -3,7 +3,7 @@
 // It connects to the backend API which retrieves content from Strapi CMS
 
 import { Image } from "astro:assets";
-import FormattedDate from "./FormattedDate.astro";
+import Datetime from "./Datetime.astro";
 
 // Fetch content from the backend API
 let agentContent = [];
@@ -65,9 +65,9 @@ try {
       <div class="agent-content-item mb-6 pb-6 border-b border-gray-300 dark:border-gray-700">
         <h2 class="text-xl font-medium">{item.title}</h2>
         <div class="flex items-center space-x-2 mt-1 mb-2 text-sm text-gray-500 dark:text-gray-400">
-          <span>Published: <FormattedDate datetime={new Date(item.publishedAt)} /></span>
+          <span>Published: <Datetime datetime={new Date(item.publishedAt)} /></span>
           <span>•</span>
-          <span>Updated: <FormattedDate datetime={new Date(item.updatedAt)} /></span>
+          <span>Updated: <Datetime datetime={new Date(item.updatedAt)} /></span>
         </div>
         <p class="text-gray-700 dark:text-gray-300">{item.description}</p>
         {item.coverImage && (
